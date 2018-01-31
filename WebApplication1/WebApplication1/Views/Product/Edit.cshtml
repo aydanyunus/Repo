@@ -1,0 +1,60 @@
+﻿@using WebApplication1.Models;
+
+@{
+
+
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Product activePro = ViewBag.ActiveProduct;
+}
+
+<h2>Edit</h2>
+
+
+@if (activePro != null)
+{
+    if (ViewBag.error != null)
+    {
+        <div class="alert-danger alert">
+            <h2>@ViewBag.error</h2>
+        </div>
+
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" name="Name" id="name" placeholder="Name" value="@activePro.Name" />
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input class="form-control" type="text" name="Price" id="price" placeholder="Price" value="@activePro.Price" />
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category" name="Category_Id">
+                        @foreach (Category ct in ViewBag.AllCategories)
+                        {
+                            <option value="@ct.id" @( ct.Name == activePro.Category.Name ? "selected" : "")>@ct.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="Submit" />
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    
+}
+else
+{
+    <div class="alert-danger alert">
+        <h2>@ViewBag.error</h2>
+    </div>
+}

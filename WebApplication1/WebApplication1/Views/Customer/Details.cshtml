@@ -1,0 +1,33 @@
+﻿@using WebApplication1.Models;
+
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers's Orders</h2>
+
+
+@if (ViewBag.ActiveCustomer != null)
+{
+
+
+    if (ViewBag.Orders.Count > 0)
+    {
+        <ul class="list-group">
+            @foreach (Order or in ViewBag.Orders)
+            {
+                <li class="list-group-item">
+                    @or.Customer.Firstname @or.Customer.Lastname - @or.Product.Name - @or.Purchase_date
+                </li>
+
+            }
+        </ul>
+
+    }
+}
+
+
+
